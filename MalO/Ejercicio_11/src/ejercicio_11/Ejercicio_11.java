@@ -34,26 +34,28 @@ public class Ejercicio_11 {
     private static String cambioLetras(String frase) {
 
         String temp = "";
+        String letra;
         for (int i = 0; i < frase.length(); i++) {
             switch (frase.substring(i, i + 1)) {
                 case "a", "A":
-                    temp = temp.concat("@");
+                    letra= "@";
                     break;
                 case "e", "E":
-                    temp= temp.concat("#");
+                    letra="#";
                     break;
                 case "i", "I":
-                    temp = temp.concat("$");
+                    letra = "$";
                     break;
                 case "o", "O":
-                    temp = temp.concat("%");
+                    letra = "%";
                     break;
                 case "u", "U":
-                    temp = temp.concat("*");
+                    letra = "*";
                     break;
                 default:
-                    temp = temp.concat(frase.substring(i, i+1));
+                    letra= frase.substring(i, i+1);
             }
+            temp=temp.concat(letra);
         }
         return temp;
     }
