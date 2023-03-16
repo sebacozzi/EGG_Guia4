@@ -27,25 +27,33 @@ public class Ejercicio_3 {
                 + "    * 1.28611 dólares es un 1 euro\n"
                 + "    * 129.852 yenes es un 1 euro\n"
                 + "-----------------------------------");
-        Scanner leer = new Scanner(System.in);
-        System.out.print("Ingrese el importe en euros: ");
-        float monto = leer.nextFloat();
+        
+        float monto = pregFloat("Ingrese el importe en euros: ");
         String moneda;
         String monedas = "dólares, yenes, libras.";
         do {
-            System.out.print("Ingrese la moneda: ");
-            moneda = leer.next();
+            moneda = pregStr("Ingrese la moneda: ");
             //System.out.println(moneda);
-            if (monedas.indexOf(moneda.toLowerCase()) == -1) {
+            if (!monedas.contains(moneda.toLowerCase())) {
                 System.out.println("Opción incorrecta.\n" + monedas);
             } else {
                 break;
             }
         } while (true);
         calcular(moneda.toLowerCase(), monto);
-
     }
-
+    private static float pregFloat (String mensaje) {
+        // inicialización de Scanner
+        Scanner leer = new Scanner(System.in);
+        System.out.print(mensaje);
+        return leer.nextFloat();
+    }
+    private static String pregStr (String mensaje) {
+        // inicialización de Scanner
+        Scanner leer = new Scanner(System.in);
+        System.out.print(mensaje);
+        return leer.nextLine();
+    }
     private static void calcular(String moneda, float monto) {
         float libras = (float) 0.86;
         float dolar = (float) 1.28611;

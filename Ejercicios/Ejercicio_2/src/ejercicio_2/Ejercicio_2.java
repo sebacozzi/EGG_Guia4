@@ -1,4 +1,4 @@
-/**Diseñe una función que pida el nombre y la edad de N personas e imprima los
+/** Diseñe una función que pida el nombre y la edad de N personas e imprima los
  * datos de las personas ingresadas por teclado e indique si son mayores o
  * menores de edad. Después de cada persona, el programa debe preguntarle al
  * usuario si quiere seguir mostrando personas y frenar cuando el usuario
@@ -18,35 +18,51 @@ public class Ejercicio_2 {
         // TODO code application logic here
         datos();
     }
-   public static void datos(){
-       Scanner leer = new Scanner(System.in);
-       String nombre;
-       int edad;
-       do {
-           System.out.print("Ingrese el nombre de la persona: ");
-           nombre = leer.next();
-           System.out.print("Ingrese la edad de "+ nombre + " : ");
-           edad=leer.nextInt();
-           if (esMayor(edad)) {
-               System.out.println(nombre + " de " + edad + " es mayor de edad.");               
-           } else {
-               System.out.println(nombre + " de " + edad + " es menor de edad.");
-           }
-       } while (pregunta());
-   } 
-   
-   public static boolean esMayor(int edad){
-       return edad > 17;
-   }
-   
+
+    public static void datos() {
+
+        String nombre;
+        int edad;
+        do {
+            nombre = pregStr("Ingrese el nombre de la persona: ");
+            edad = pregInt("Ingrese la edad de #n: ".replace("#n", nombre));
+            mostrar(nombre, edad);
+        } while (pregunta());
+    }
+  
+    public static void mostrar(String nombre, int edad) {
+        if (esMayor(edad)) {
+            System.out.println(nombre + " de " + edad + " es mayor de edad.");
+        } else {
+            System.out.println(nombre + " de " + edad + " es menor de edad.");
+        }
+    }
+
+    public static boolean esMayor(int edad) {
+        return edad > 17;
+    }
+
+    private static String pregStr(String mensaje) {
+        // inicialización de Scanner
+        Scanner leer = new Scanner(System.in);
+        System.out.print(mensaje);
+        return leer.nextLine();
+    }
+
+    private static int pregInt(String mensaje) {
+        // inicialización de Scanner
+        Scanner leer = new Scanner(System.in);
+        System.out.print(mensaje);
+        return leer.nextInt();
+    }
+
     public static boolean pregunta() {
         Scanner leer = new Scanner(System.in);
         boolean incorrecto, correcto = false;
         String resp;
         do {
             incorrecto = false;
-            System.out.print("¿Quiere ingresar otra persona? (si/no)");
-            resp = leer.next();
+            resp = pregStr("¿Quiere ingresar otra persona? (si/no)");           
             if (resp.equalsIgnoreCase("si")) {
                 correcto = true;
             } else if (resp.equalsIgnoreCase("no")) {
@@ -56,6 +72,7 @@ public class Ejercicio_2 {
                 incorrecto = true;
             }
         } while (incorrecto);
+
         return correcto;
     }
 }
