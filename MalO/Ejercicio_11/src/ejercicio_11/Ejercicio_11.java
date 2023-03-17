@@ -55,8 +55,9 @@ public class Ejercicio_11 {
                 default:
                     letra = frase.substring(i, i + 1);
             }
-            temp = temp.concat(letra);
+            temp = temp + letra;
         }
+        
         return temp;
     }
 }
